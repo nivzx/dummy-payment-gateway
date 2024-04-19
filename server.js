@@ -6,28 +6,13 @@ const port = 3000
 
 app.use(bodyParser.json())
 
-const stores = [
-  'pizza-hut',
-  'kfc',
-  'mcdonalds',
-  'kells',
-  'cargills',
-  'arpico-super-center',
-  'fashion-bug',
-  'nolimit',
-  'cool-planet',
-  'hilton',
-]
+app.post('*', (req, res) => {
+  console.log(req.body)
 
-stores.forEach((store) => {
-  app.post(`/${store}-payment`, (req, res) => {
-    console.log(req.body)
-
-    res.json({
-      isSuccessful: true,
-      message: 'Payment successful',
-      details: `Transaction ID: `,
-    })
+  res.json({
+    isSuccessful: true,
+    message: 'Payment successful',
+    details: `Transaction ID: ${Math.floor(Math.random() * 1000000)}`,
   })
 })
 
